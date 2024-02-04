@@ -110,4 +110,20 @@ const renderSongs = (array) => {
   playlistSongs.innerHTML = songsHTML;
 };
 
+userData?.songs.sort((a, b) => {
+  ///If the title of a is less than the title of b, -1 is returned. This means that a should be placed before b in the sorted array.
+  if (a.title < b.title) {
+    return -1;
+  }
+
+  ///If the title of a is greater than the title of b, 1 is returned. This means that a should be placed after b in the sorted array.
+  if (a.title > b.title) {
+    return 1;
+  }
+
+  ///If the titles of a and b are equal, 0 is returned. This means that their order should not be changed.
+  return 0;
+});
+///By returning these values based on the comparison of titles, the sort() method arranges the songs in alphabetical order.
+
 renderSongs(userData?.songs);
