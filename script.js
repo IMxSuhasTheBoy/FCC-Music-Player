@@ -88,6 +88,23 @@ let userData = {
   songCurrentTime: 0,
 };
 
+const playSong = (id) => {
+  ///got the song that is choosen to play, assigned it to HTMLAudioElement Obj props
+  const song = userData?.songs.find((song) => song.id === id);
+  audio.src = song.src;
+  audio.title = song.title;
+
+  ///By those checks wanted to start playing the song from 0 seconds
+  if (userData?.currentSong === null || userData?.currentSong.id !== song.id) {
+    audio.currentTime = 0;
+  } else {
+    audio.currentTime = userData?.songCurrentTime;
+  }
+  
+  ///assigned the choosen song to userData obj property
+  userData.currentSong = song
+};
+
 const renderSongs = (array) => {
   const songsHTML = array
     .map((song) => {
