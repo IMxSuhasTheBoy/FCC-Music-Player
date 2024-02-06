@@ -81,7 +81,7 @@ const allSongs = [
 
 const audio = new Audio();
 
-///for user the a copy of songs is created, It can be used to modidify as user customises it
+///for user the a copy of songs is created, It can be used to modify as user customises it
 let userData = {
   songs: [...allSongs],
   currentSong: null,
@@ -108,6 +108,13 @@ const playSong = (id) => {
   playButton.classList.add("playing");
 
   audio.play();
+};
+
+const pauseSong = () => {
+  userData.songCurrentTime = audio.currentTime;
+  
+  playButton.classList.remove("playing");
+  audio.pause();
 };
 
 const renderSongs = (array) => {
@@ -139,6 +146,8 @@ playButton.addEventListener("click", () => {
     playSong(userData?.currentSong.id);
   }
 });
+
+pauseButton.addEventListener("click",  pauseSong);
 
 userData?.songs.sort((a, b) => {
   ///If the title of a is less than the title of b, -1 is returned. This means that a should be placed before b in the sorted array.
